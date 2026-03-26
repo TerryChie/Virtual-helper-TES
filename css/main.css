@@ -1,0 +1,236 @@
+html {
+    scroll-behavior: smooth;
+}
+
+div{
+    scroll-margin-top: 80px;
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    background-color: rgb(226, 226, 226);
+
+    opacity: 0;
+}
+body.loaded {
+    opacity: 1;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px 0;
+    
+    background-color: aliceblue;
+}
+
+.about-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: start;
+    flex-wrap: wrap;
+
+    max-width: 1200px;
+}
+.text-container{
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 600px;
+}
+
+.nav-bar{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100px;
+
+    background-color: aquamarine;
+ }
+
+.name-of-project{
+    height: 100%;
+    width: 100%;
+    max-width: 300px;
+
+    padding: 10px 0 0 10px;
+}
+
+.nav-button-container{
+    display: flex;
+    overflow-x: auto;
+    background: blueviolet;
+
+    height: 100%;
+    width: 100%;
+}
+
+a.nav-button{
+    display: flex;
+    flex: 1 1;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0 5px;
+
+    text-decoration: none;
+    color: yellow;
+
+    border: none;
+    
+    border-radius: 12px;
+}
+a.nav-button.active{
+    background-color: yellow;
+    color: black;
+}
+
+a.nav-button:hover{
+    background: rgb(101, 21, 175);
+}
+a.nav-button.active:hover{
+    background-color: rgb(212, 212, 0);
+}
+
+a.nav-button:active{
+    background: rgb(81, 8, 150);
+}
+a.nav-button.active:active{
+    background-color: rgb(175, 175, 0);
+}
+
+.lab-container{
+    box-sizing: border-box;
+    display: flex;
+    margin: 10px 0;
+    padding: 10px 10px;
+    height: 150px;
+}
+
+.lab-preview{
+
+    display: flex;
+
+    background: blanchedalmond;
+
+    height: 100%;
+    aspect-ratio: 1;
+
+    text-align: center;
+    align-items: center;
+}
+
+.lab-content{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+.lab-title{
+    padding: 2%;
+
+    font-size: 24px;
+}
+
+.lab-description{
+    text-align: justify;
+    padding: 2%;
+
+    font-size: 16px;
+}
+
+footer{
+    box-sizing: border-box;
+    
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+    width: 100%;
+    min-height: 70px;
+    max-height: 120px;
+    margin: 0 auto;
+    padding: 10px 10px;
+    gap: 10px;
+
+    align-items: center;
+
+    background-color: blanchedalmond;
+    color: rgb(88, 81, 70);
+}
+
+.footer-item{
+    flex: 1 1 200px;
+}
+
+.text-block{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin: 0 0 10px 0;
+    padding: 10px;
+    border-radius: 10px;
+
+    background-color: aquamarine;
+}
+
+h1{
+    font-size: 30px;
+}
+h2{
+    font-size: 24px;
+}
+h3{
+    font-size: 20px;
+}
+
+.nav-sidebar{
+    position: sticky;
+    top: 10px;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    min-height: 150px;
+    min-width: 360px;
+
+    margin: 0 10px;
+    background-color: aqua;
+    border-radius: 20px;
+}
+
+.nav-sidebar-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 30px;
+    width: 50%;
+    border-radius: 12px;
+}
+
+a.nav-sidebar-button{
+    text-decoration: none;
+    color: red;
+    background-color: #ffff00;
+}
+
+a.nav-sidebar-button:hover{
+    background-color: #d5d500;
+}
+
+a.nav-sidebar-button:active{
+    background-color: #9f9f00;
+}
