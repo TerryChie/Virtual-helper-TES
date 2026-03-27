@@ -1,3 +1,30 @@
+@font-face{font-family:'Montserrat';src:url('../assets/fonts/Montserrat-Thin.ttf') format('truetype');font-weight:100;font-style:normal;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('../assets/fonts/Montserrat-ThinItalic.ttf') format('truetype');font-weight:100;font-style:italic;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('../assets/fonts/Montserrat-ExtraLight.ttf') format('truetype');font-weight:200;font-style:normal;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('../assets/fonts/Montserrat-ExtraLightItalic.ttf') format('truetype');font-weight:200;font-style:italic;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('../assets/fonts/Montserrat-Light.ttf') format('truetype');font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('../assets/fonts/Montserrat-LightItalic.ttf') format('truetype');font-weight:300;font-style:italic;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('../assets/fonts/Montserrat-Regular.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('../assets/fonts/Montserrat-Italic.ttf') format('truetype');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('../assets/fonts/Montserrat-Medium.ttf') format('truetype');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('../assets/fonts/Montserrat-MediumItalic.ttf') format('truetype');font-weight:500;font-style:italic;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('../assets/fonts/Montserrat-SemiBold.ttf') format('truetype');font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('../assets/fonts/Montserrat-SemiBoldItalic.ttf') format('truetype');font-weight:600;font-style:italic;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('../assets/fonts/Montserrat-Bold.ttf') format('truetype');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('../assets/fonts/Montserrat-BoldItalic.ttf') format('truetype');font-weight:700;font-style:italic;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('../assets/fonts/Montserrat-ExtraBold.ttf') format('truetype');font-weight:800;font-style:normal;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('../assets/fonts/Montserrat-ExtraBoldItalic.ttf') format('truetype');font-weight:800;font-style:italic;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('../assets/fonts/Montserrat-Black.ttf') format('truetype');font-weight:900;font-style:normal;font-display:swap}
+@font-face{font-family:'Montserrat';src:url('../assets/fonts/Montserrat-BlackItalic.ttf') format('truetype');font-weight:900;font-style:italic;font-display:swap}
+
+::-webkit-scrollbar {
+    width: 0;
+    height: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: #7e7e7e;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -11,9 +38,10 @@ body{
     display: flex;
     flex-direction: column;
 
-    background-color: rgb(226, 226, 226);
+    background-color: #FFF;
 
     opacity: 0;
+    font-family: 'Montserrat';
 }
 body.loaded {
     opacity: 1;
@@ -29,7 +57,7 @@ body.loaded {
     margin: 0 auto;
     padding: 10px 0;
     
-    background-color: aliceblue;
+    background-color: #FFF;
 }
 
 .about-container{
@@ -51,26 +79,33 @@ body.loaded {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100px;
+    height: 105px;
 
-    background-color: aquamarine;
+    background-image: url(../assets/images/bg/bgLogo.png);
+    background-size: cover;
+    color: #FFF;
  }
 
 .name-of-project{
+    display: flex;
     height: 100%;
     width: 100%;
     max-width: 300px;
+    align-items: center;
 
-    padding: 10px 0 0 10px;
+    padding: 10px;
 }
 
 .nav-button-container{
     display: flex;
     overflow-x: auto;
-    background: blueviolet;
+    background-color: #FFF;
 
     height: 100%;
     width: 100%;
+
+    border: #000 solid;
+    border-width: 1px 0 1px 0;
 }
 
 a.nav-button{
@@ -79,32 +114,33 @@ a.nav-button{
     justify-content: center;
     align-items: center;
     height: 100%;
-    padding: 0 5px;
+    min-width: 125px;
+    padding: 0 3px;
 
     text-decoration: none;
-    color: yellow;
+    color: #212529;
 
     border: none;
     
-    border-radius: 12px;
+    border-radius: 10px;
 }
 a.nav-button.active{
-    background-color: yellow;
-    color: black;
+    background-color: #1d869e;
+    color: #000;
 }
 
 a.nav-button:hover{
-    background: rgb(101, 21, 175);
+    background-color: #cacaca;
 }
 a.nav-button.active:hover{
-    background-color: rgb(212, 212, 0);
+    background-color: #1d697c;
 }
 
 a.nav-button:active{
-    background: rgb(81, 8, 150);
+    background-color: #8c8c8c;
 }
 a.nav-button.active:active{
-    background-color: rgb(175, 175, 0);
+    background-color: #165160;
 }
 
 .lab-container{
@@ -113,13 +149,16 @@ a.nav-button.active:active{
     margin: 10px 0;
     padding: 10px 10px;
     height: 150px;
+
+    border: 1px solid #000;
+    border-radius: 10px;
 }
 
 .lab-preview{
 
     display: flex;
 
-    background: blanchedalmond;
+    background-color: #BBB;
 
     height: 100%;
     aspect-ratio: 1;
@@ -164,8 +203,8 @@ footer{
 
     align-items: center;
 
-    background-color: blanchedalmond;
-    color: rgb(88, 81, 70);
+    background-color: #1d869e;
+    color: #FFF;
 }
 
 .footer-item{
@@ -178,9 +217,11 @@ footer{
     flex: 1;
     margin: 0 0 10px 0;
     padding: 10px;
+
+    border: 1px solid #000;
     border-radius: 10px;
 
-    background-color: aquamarine;
+    background-color: #FFF;
 }
 
 h1{
@@ -195,10 +236,11 @@ h3{
 
 .nav-sidebar{
     position: sticky;
-    top: 10px;
+    top: 0;
     z-index: 1;
 
     display: flex;
+    flex: 1 1 400px;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
@@ -206,9 +248,9 @@ h3{
     min-height: 150px;
     min-width: 360px;
 
-    margin: 0 10px;
-    background-color: aqua;
-    border-radius: 20px;
+    border-radius: 0 0 20px 20px;
+
+    backdrop-filter: blur(6px)
 }
 
 .nav-sidebar-button{
@@ -218,19 +260,20 @@ h3{
 
     height: 30px;
     width: 50%;
+    max-width: 250px;
     border-radius: 12px;
 }
 
 a.nav-sidebar-button{
     text-decoration: none;
-    color: red;
-    background-color: #ffff00;
+    color: #000;
+    background-color: #999;
 }
 
 a.nav-sidebar-button:hover{
-    background-color: #d5d500;
+    background-color: #777;
 }
 
 a.nav-sidebar-button:active{
-    background-color: #9f9f00;
+    background-color: #555;
 }
