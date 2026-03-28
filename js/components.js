@@ -6,8 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
 async function loadLayout() {
     // Массив элементов для загрузки
     const layouts = [
-        { id: 'header-placeholder', url: '../components/header.html' },
-        { id: 'footer-placeholder', url: '../components/footer.html' }
+        { id: 'header-placeholder', url: '/assets/components/header.html' },
+        { id: 'footer-placeholder', url: '/assets/components/footer.html' }
     ];
 
     for (const item of layouts) {
