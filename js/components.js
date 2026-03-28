@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 async function loadLayout() {
+    console.log('1321312');
     const layouts = [
         { id: 'header-placeholder', url: '/Virtual-helper-TES/assets/components/header.html' },
         { id: 'footer-placeholder', url: '/Virtual-helper-TES/assets/components/footer.html' }
