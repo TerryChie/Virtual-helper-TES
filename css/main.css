@@ -94,6 +94,8 @@ body.loaded {
     align-items: center;
 
     padding: 10px;
+
+    user-select: none;
 }
 
 .nav-button-container{
