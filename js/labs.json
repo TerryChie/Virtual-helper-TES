@@ -1,0 +1,38 @@
+{
+  "lab1": {
+    "labPath": "labs/lab1.html",
+    "imgPath": "../assets/images/bg/bgLogo.png",
+    "title": "Лабораторная про электричество",
+    "about": "by Artyom Kalaytanov"
+  },
+  "lab2": {
+    "labPath": "labs/lab2.html",
+    "imgPath": "../assets/images/bg/bgLogo.png",
+    "title": "Лабораторная про электричество",
+    "about": "by Artyom Kalaytanov"
+  },
+  "lab3": {
+    "labPath": "labs/lab3.html",
+    "imgPath": "../assets/images/bg/bgLogo.png",
+    "title": "Лабораторная про электричество",
+    "about": "by Artyom Kalaytanov"
+  },
+  "lab4": {
+    "labPath": "labs/lab4.html",
+    "imgPath": "../assets/images/bg/bgLogo.png",
+    "title": "Лабораторная про электричество",
+    "about": "by Artyom Kalaytanov"
+  },
+  "lab5": {
+    "labPath": "labs/lab5.html",
+    "imgPath": "../assets/images/bg/bgLogo.png",
+    "title": "Лабораторная про электричество",
+    "about": "by Artyom Kalaytanov"
+  },
+  "lab6": {
+    "labPath": "labs/lab6.html",
+    "imgPath": "../assets/images/bg/bgLogo.png",
+    "title": "Лабораторная про электричество",
+    "about": "by Artyom Kalaytanov"
+  }
+}

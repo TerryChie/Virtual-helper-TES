@@ -150,7 +150,10 @@ a.nav-button.active:active{
     display: flex;
     margin: 10px 0;
     padding: 10px 10px;
+
     height: 150px;
+    max-width: 600px;
+    width: 100%;
 
     border: 1px solid #000;
     border-radius: 10px;
@@ -287,4 +290,9 @@ a.nav-sidebar-button:hover{
 
 a.nav-sidebar-button:active{
     background-color: #555;
+}
+
+.lab-img{
+    height: 100%;
+    aspect-ratio: 1;
 }
