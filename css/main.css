@@ -67,7 +67,7 @@ body.loaded {
     align-items: start;
     flex-wrap: wrap;
 
-    max-width: 1200px;
+    max-width: 1330px;
 }
 .text-container{
     display: flex;
@@ -148,11 +148,12 @@ a.nav-button.active:active{
 .lab-container{
     box-sizing: border-box;
     display: flex;
+    align-items: start;
     margin: 10px 0;
     padding: 10px 10px;
 
     height: 150px;
-    max-width: 600px;
+    max-width: 800px;
     width: 100%;
 
     border: 1px solid #000;
@@ -189,15 +190,17 @@ a.lab-container:hover{
 }
 
 .lab-title{
+    width: 100%;
     padding: 2%;
 
     font-size: 24px;
 }
 
 .lab-description{
-    text-align: justify;
+    width: 100%;
     padding: 2%;
 
+    text-align: justify;
     font-size: 16px;
 }
 
@@ -230,7 +233,7 @@ footer{
     display: flex;
     flex-direction: column;
     flex: 1;
-    margin: 0 0 10px 0;
+    margin: 0 2px 10px 2px;
     padding: 10px;
 
     border: 1px solid #000;
@@ -247,49 +250,6 @@ h2{
 }
 h3{
     font-size: 20px;
-}
-
-.nav-sidebar{
-    position: sticky;
-    top: 0;
-    z-index: 1;
-
-    display: flex;
-    flex: 1 1 33%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-
-    min-height: 150px;
-    min-width: 360px;
-
-    border-radius: 0 0 20px 20px;
-
-    backdrop-filter: blur(6px)
-}
-
-.nav-sidebar-button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    height: 30px;
-    width: 250px;
-    border-radius: 12px;
-}
-
-a.nav-sidebar-button{
-    text-decoration: none;
-    color: #000;
-    background-color: #999;
-}
-
-a.nav-sidebar-button:hover{
-    background-color: #777;
-}
-
-a.nav-sidebar-button:active{
-    background-color: #555;
 }
 
 .lab-img{
