@@ -1,21 +1,11 @@
-@font-face{font-family:'Montserrat';src:url('/Virtual-helper-TES/assets/fonts/Montserrat-Thin.ttf') format('truetype');font-weight:100;font-style:normal;font-display:swap}
-@font-face{font-family:'Montserrat';src:url('/Virtual-helper-TES/assets/fonts/Montserrat-ThinItalic.ttf') format('truetype');font-weight:100;font-style:italic;font-display:swap}
-@font-face{font-family:'Montserrat';src:url('/Virtual-helper-TES/assets/fonts/Montserrat-ExtraLight.ttf') format('truetype');font-weight:200;font-style:normal;font-display:swap}
-@font-face{font-family:'Montserrat';src:url('/Virtual-helper-TES/assets/fonts/Montserrat-ExtraLightItalic.ttf') format('truetype');font-weight:200;font-style:italic;font-display:swap}
-@font-face{font-family:'Montserrat';src:url('/Virtual-helper-TES/assets/fonts/Montserrat-Light.ttf') format('truetype');font-weight:300;font-style:normal;font-display:swap}
-@font-face{font-family:'Montserrat';src:url('/Virtual-helper-TES/assets/fonts/Montserrat-LightItalic.ttf') format('truetype');font-weight:300;font-style:italic;font-display:swap}
-@font-face{font-family:'Montserrat';src:url('/Virtual-helper-TES/assets/fonts/Montserrat-Regular.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:'Montserrat';src:url('/Virtual-helper-TES/assets/fonts/Montserrat-Italic.ttf') format('truetype');font-weight:400;font-style:italic;font-display:swap}
-@font-face{font-family:'Montserrat';src:url('/Virtual-helper-TES/assets/fonts/Montserrat-Medium.ttf') format('truetype');font-weight:500;font-style:normal;font-display:swap}
-@font-face{font-family:'Montserrat';src:url('/Virtual-helper-TES/assets/fonts/Montserrat-MediumItalic.ttf') format('truetype');font-weight:500;font-style:italic;font-display:swap}
-@font-face{font-family:'Montserrat';src:url('/Virtual-helper-TES/assets/fonts/Montserrat-SemiBold.ttf') format('truetype');font-weight:600;font-style:normal;font-display:swap}
-@font-face{font-family:'Montserrat';src:url('/Virtual-helper-TES/assets/fonts/Montserrat-SemiBoldItalic.ttf') format('truetype');font-weight:600;font-style:italic;font-display:swap}
-@font-face{font-family:'Montserrat';src:url('/Virtual-helper-TES/assets/fonts/Montserrat-Bold.ttf') format('truetype');font-weight:700;font-style:normal;font-display:swap}
-@font-face{font-family:'Montserrat';src:url('/Virtual-helper-TES/assets/fonts/Montserrat-BoldItalic.ttf') format('truetype');font-weight:700;font-style:italic;font-display:swap}
-@font-face{font-family:'Montserrat';src:url('/Virtual-helper-TES/assets/fonts/Montserrat-ExtraBold.ttf') format('truetype');font-weight:800;font-style:normal;font-display:swap}
-@font-face{font-family:'Montserrat';src:url('/Virtual-helper-TES/assets/fonts/Montserrat-ExtraBoldItalic.ttf') format('truetype');font-weight:800;font-style:italic;font-display:swap}
-@font-face{font-family:'Montserrat';src:url('/Virtual-helper-TES/assets/fonts/Montserrat-Black.ttf') format('truetype');font-weight:900;font-style:normal;font-display:swap}
-@font-face{font-family:'Montserrat';src:url('/Virtual-helper-TES/assets/fonts/Montserrat-BlackItalic.ttf') format('truetype');font-weight:900;font-style:italic;font-display:swap}
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root{
+    --white: #FFFFFF;
+    --black: #000000;
+    --gray: #8C8C8C;
+    --accent: #41A1D2;
+}
 
 .nav-button-container::-webkit-scrollbar {
     width: 0;
@@ -38,10 +28,12 @@ body{
     display: flex;
     flex-direction: column;
 
-    background-color: #FFF;
+    background-color: var(--white);
 
     opacity: 0;
-    font-family: 'Montserrat';
+    font-family: 'Inter';
+
+    line-height: unset;
 }
 body.loaded {
     opacity: 1;
@@ -56,8 +48,6 @@ body.loaded {
     width: 100%;
     margin: 0 auto;
     padding: 10px 0;
-    
-    background-color: #FFF;
 }
 
 .about-container{
@@ -75,158 +65,221 @@ body.loaded {
     flex: 1 1 600px;
 }
 
-.nav-bar{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 105px;
+#header-placeholder{
+    position: sticky !important;
+    z-index: 1;
+    top: 0;
+    background-color: var(--white);
+}
 
-    background-image: url(../assets/images/bg/bgLogo.png);
-    background-size: cover;
-    color: #FFF;
+.nav-bar{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 100px;
+    gap: 22px;
+
+    color: var(--black);
+    box-shadow: 0px 46px 13px 0px rgba(0, 0, 0, 0%), 0px 29px 12px 0px rgba(0, 0, 0, 1%), 0px 17px 10px 0px rgba(0, 0, 0, 3%), 0px 7px 7px 0px rgba(0, 0, 0, 4%), 0px 2px 4px 0px rgba(0, 0, 0, 5%);
  }
 
 .name-of-project{
     display: flex;
-    height: 100%;
-    width: 100%;
-    max-width: 300px;
-    align-items: center;
+    max-width: 560px;
 
-    padding: 10px;
+    color: var(--accent);
+    font-size: 28px;
+    font-weight: 700;
 
     user-select: none;
 }
 
 .nav-button-container{
     display: flex;
-    overflow-x: auto;
-    background-color: #FFF;
+    flex: 1;
+    justify-content: space-between;
 
-    height: 100%;
-    width: 100%;
-
-    border: #000 solid;
-    border-width: 1px 0 1px 0;
+    border: none;
 }
 
 a.nav-button{
     display: flex;
-    flex: 1 1;
     justify-content: center;
-    align-items: center;
-    height: 100%;
-    min-width: 125px;
-    padding: 0 3px;
+    padding: 10px 20px;
 
-    text-decoration: none;
-    color: #212529;
-
+    color: var(--black);
     border: none;
-    
     border-radius: 10px;
-}
-a.nav-button.active{
-    background-color: #1d869e;
-    color: #000;
-}
 
+    font-size: 28px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 50ms ease-in-out;
+}
 a.nav-button:hover{
-    background-color: #cacaca;
+    color: var(--accent);
 }
-a.nav-button.active:hover{
-    background-color: #1d697c;
-}
-
 a.nav-button:active{
-    background-color: #8c8c8c;
-}
-a.nav-button.active:active{
-    background-color: #165160;
+    color: var(--white);
+    background-color: var(--accent);
 }
 
 .lab-container{
     box-sizing: border-box;
     display: flex;
-    align-items: start;
-    margin: 10px 0;
-    padding: 10px 10px;
+    flex-direction: column;
+    justify-content: start;
 
-    height: 150px;
-    max-width: 800px;
-    width: 100%;
+    flex: 1 1 400px;
 
-    border: 1px solid #000;
+    max-width: 520px;
+
+    padding: 10px;
+    gap: 10px;
+
     border-radius: 10px;
-}
-
-a.lab-container{
     text-decoration: none;
-    color: #000;
-}
-a.lab-container:hover{
-    color: #000;
+    color: var(--black);
 }
 
+.lab-container:hover{
+    box-shadow: 0px 46px 13px 0px rgba(0, 0, 0, 0%), 0px 29px 12px 0px rgba(0, 0, 0, 1%), 0px 17px 10px 0px rgba(0, 0, 0, 3%), 0px 7px 7px 0px rgba(0, 0, 0, 4%), 0px 2px 4px 0px rgba(0, 0, 0, 5%);
+}
 
 .lab-preview{
-
     display: flex;
 
-    background-color: #BBB;
-
-    height: 100%;
     aspect-ratio: 1;
 
     text-align: center;
     align-items: center;
+
+    background-color: var(--gray);
+    border-radius: 10px;
 }
-
-.lab-content{
-    display: flex;
-    flex-direction: column;
-
-    justify-content: center;
+.lab-img{
 }
 
 .lab-title{
-    width: 100%;
-    padding: 2%;
-
-    font-size: 24px;
 }
 
 .lab-description{
-    width: 100%;
-    padding: 2%;
+}
 
-    text-align: justify;
+.bold{
+    font-weight: 700;
+}
+.font28px{
+    font-size: 28px;
+}
+.font24px{
+    font-size: 24px;
+}
+.font18px{
+    font-size: 18px;
+}
+.font16px{
     font-size: 16px;
 }
 
 footer{
     box-sizing: border-box;
+    width: 100%;
     
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-
-    width: 100%;
-    min-height: 70px;
-    max-height: 120px;
-    margin: 0 auto;
-    padding: 10px 10px;
-    gap: 10px;
-
+    justify-content: space-between;
     align-items: center;
 
-    background-image: url(../assets/images/bg/bgLogo.png);
-    background-size: cover;
-    color: #FFF;
+    padding: 20px 5%;
+    gap: 10px;
+
+    border-top: 3px solid var(--accent);
+
+    background-color: var(--white);
+    color: var(--black);
 }
 
 .footer-item{
-    flex: 1 1 200px;
+    display: flex;
+    flex-direction: column;
+}
+.footer-item-row{
+    display: flex;
+    flex-direction: row;
+    gap: 75px;
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 1024px){
+    .nav-bar{
+        padding: 10px;
+        border-radius: 0 0 10px 10px;
+        gap: 10px;
+    }
+    .name-of-project{
+        text-align: center;
+        font-size: 18px;
+        font-weight: 700;
+    }
+    .nav-button-container{
+        gap: 4.75px;
+    }
+    .nav-button{
+        border-radius: 5px;
+        font-size: 8px !important;
+        padding: 5px !important;
+    }
+    .container{
+        padding: 10px !important;
+        gap: 0 !important;
+        justify-content: center;
+    }
+    .lab-container{
+        max-width: 300px;
+        gap: 5px;
+    }
+    .lab-title{
+        font-size: 12px;
+    }
+    .lab-description{
+        font-size: 8px;
+    }
+}
+@media screen and (max-width: 650px){
+    footer{
+        border: none;
+        border-radius: 10px 10px 0 0;
+        padding: 10px;
+        text-align: center;
+
+        box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.05), 0px -1px 1px 0px rgba(0, 0, 0, 0.04), 0px -3px 2px 0px rgba(0, 0, 0, 0.03), 0px -5px 2px 0px rgba(0, 0, 0, 0.01), 0px -8px 2px 0px rgba(0, 0, 0, 0);
+
+    }
+    .footer-item{
+        width: 100%;
+    }
+
+    .footer-item.font18px{
+        align-items: start;
+    }
+    .footer-item-row{
+        display: grid;
+        grid-template-columns: auto 1fr;
+        column-gap: 10px;
+    }
+    .font28px{
+        font-size: 18px;
+    }
+    .font18px{
+        font-size: 12px;
+    }
 }
 
 .text-block{
@@ -250,9 +303,4 @@ h2{
 }
 h3{
     font-size: 20px;
-}
-
-.lab-img{
-    height: 100%;
-    aspect-ratio: 1;
 }

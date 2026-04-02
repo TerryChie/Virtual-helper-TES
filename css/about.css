@@ -37,7 +37,7 @@
     align-items: center;
 
     height: 30px;
-    width: 250px;
+    width: 200px;
     border-radius: 12px;
 
     margin: 5px 0;
@@ -67,8 +67,4 @@ h2{
 
 h3{
     padding: 5px 0px;
-}
-
-span.thick-font{
-    font-weight: bold;
 }

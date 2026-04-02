@@ -52,14 +52,11 @@ function prime() {
         const AHAH_WW = document.querySelectorAll('div, h1, h2, h3, h4, h5, a');
 
         AHAH_WW.forEach(element => {
-
             element.childNodes.forEach(node => {
                 if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== "") {
                     node.textContent = 'Калайтанов Артём';
                 }
             })
         })
-
-
     })
 }

@@ -16,10 +16,10 @@ function createLabCardUI() {
 
 function createLabCardStructure(title, about, labPath, imgPath) {
     return `<a href="${labPath}" class="lab-container">
-                <div class="lab-preview"><img class="lab-img" src="${imgPath}" alt="Artyom Kalaytanov"></div>
-                <div class="lab-content">
-                    <div class="lab-title">${title}</div>
-                    <div class="lab-description">${about}</div>
+                <div class="lab-preview">
+                    <img class="lab-img" alt="">
                 </div>
+                <div class="lab-title bold font24px">${title}</div>
+                <div class="lab-description font16px">${about}</div>
             </a>`
 }

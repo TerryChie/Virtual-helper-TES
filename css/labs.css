@@ -1,0 +1,12 @@
+.container{
+    box-sizing: border-box;
+    flex-direction: row;
+    flex: 1 1 520px;
+    flex-wrap: wrap;
+
+    align-items: start;
+
+    padding: 54px 120px;
+    padding-right: 34px;
+    gap: 30px 60px;
+}
