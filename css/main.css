@@ -252,7 +252,7 @@ footer{
         font-size: 8px;
     }
 }
-@media screen and (max-width: 650px){
+@media screen and (max-width: 710px){
     footer{
         border: none;
         border-radius: 10px 10px 0 0;
