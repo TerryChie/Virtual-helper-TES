@@ -8,18 +8,15 @@ function createLabCardUI() {
 
     const pohuy = document.getElementById('labsContainer');
 
-    for(let lab of Object.values(labsJson)) {
-        pohuy.innerHTML += createLabCardStructure(lab.title, lab.about, lab.labPath, lab.imgPath);
-    }
-
+    pohuy.innerHTML += labsJson.map(lab => createLabCardStructure(lab)).join('');
 }
 
-function createLabCardStructure(title, about, labPath, imgPath) {
-    return `<a href="${labPath}" class="lab-container">
+function createLabCardStructure(lab) {
+    return `<a href="${lab.href}" class="lab-container">
                 <div class="lab-preview">
                     <img class="lab-img" alt="">
                 </div>
-                <div class="lab-title bold font24px">${title}</div>
-                <div class="lab-description font16px">${about}</div>
+                <div class="lab-title bold font24px">${lab.title}</div>
+                <div class="lab-description font16px">${lab.about}</div>
             </a>`
 }
