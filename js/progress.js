@@ -4,26 +4,26 @@ const STORAGE_KEY = 'virtual_lab_progress';
 const path = window.location.pathname;
 const currentLabId = path.split('/').pop().replace('.html', '');
 
+initializeProgress(getProgress());
+
 document.addEventListener('DOMContentLoaded', () => {
-    initializeProgress();
+    const currentData = getProgress();
 
     const labComplete = document.getElementById('labComplete');
     if (labComplete) {
         labComplete.onclick = completeLab
     }
-
-    const  currentData = getProgress()
     if(currentData && currentLabId in currentData) {
         checkLabCompletion()
     }
 });
 
-function initializeProgress() {
-    if (!localStorage.getItem(STORAGE_KEY)) {
+function initializeProgress(currentData) {
+    if (!currentData) {
         const initialSkeleton = {
-            "user_info": { "last_activity": new Date().toISOString(), "overall_test_score": 0 },
-            "lab1": { "is_completed": false, "test_score": 0, "attempts": 0 },
-            "lab2": { "is_completed": false, "test_score": 0, "attempts": 0 }
+            user_info: { last_activity: new Date().toISOString(), overall_test_score: 0 },
+            lab1: { is_completed: false, test_score: 0, attempts: 0 },
+            lab2: { is_completed: false, test_score: 0, attempts: 0 }
         };
         localStorage.setItem(STORAGE_KEY, JSON.stringify(initialSkeleton));
     }

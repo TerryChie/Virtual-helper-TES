@@ -31,7 +31,7 @@ body{
     background-color: var(--white);
 
     opacity: 0;
-    font-family: 'Inter';
+    font-family: 'Inter', sans-serif;
 
     line-height: unset;
 }
@@ -40,6 +40,7 @@ body.loaded {
 }
 
 .container{
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -50,19 +51,29 @@ body.loaded {
     padding: 10px 0;
 }
 
-.about-container{
-    display: flex;
+.container#progressContainer{
     flex-direction: row;
     justify-content: center;
     align-items: start;
-    flex-wrap: wrap;
 
-    max-width: 1330px;
+    padding: 0 100px;
 }
-.text-container{
+
+.sidebar{
     display: flex;
     flex-direction: column;
-    flex: 1 1 600px;
+    max-width: 270px;
+    min-width: 270px;
+
+    border: #41A1D2 1px solid;
+}
+.empty{
+}
+.lab-list{
+    width: 100%;
+    border: #41A1D2 1px solid;
+    max-width: 1140px;
+    flex-shrink: 0;
 }
 
 #header-placeholder{
@@ -85,7 +96,7 @@ body.loaded {
     gap: 22px;
 
     color: var(--black);
-    box-shadow: 0px 46px 13px 0px rgba(0, 0, 0, 0%), 0px 29px 12px 0px rgba(0, 0, 0, 1%), 0px 17px 10px 0px rgba(0, 0, 0, 3%), 0px 7px 7px 0px rgba(0, 0, 0, 4%), 0px 2px 4px 0px rgba(0, 0, 0, 5%);
+    box-shadow: 0 46px 13px 0 rgba(0, 0, 0, 0%), 0 29px 12px 0 rgba(0, 0, 0, 1%), 0 17px 10px 0 rgba(0, 0, 0, 3%), 0 7px 7px 0 rgba(0, 0, 0, 4%), 0 2px 4px 0 rgba(0, 0, 0, 5%);
  }
 
 .name-of-project{
@@ -148,7 +159,7 @@ a.nav-button:active{
 }
 
 .lab-container:hover{
-    box-shadow: 0px 46px 13px 0px rgba(0, 0, 0, 0%), 0px 29px 12px 0px rgba(0, 0, 0, 1%), 0px 17px 10px 0px rgba(0, 0, 0, 3%), 0px 7px 7px 0px rgba(0, 0, 0, 4%), 0px 2px 4px 0px rgba(0, 0, 0, 5%);
+    box-shadow: 0 46px 13px 0 rgba(0, 0, 0, 0%), 0 29px 12px 0 rgba(0, 0, 0, 1%), 0 17px 10px 0 rgba(0, 0, 0, 3%), 0 7px 7px 0 rgba(0, 0, 0, 4%), 0 2px 4px 0 rgba(0, 0, 0, 5%);
 }
 
 .lab-preview{
@@ -179,6 +190,9 @@ a.nav-button:active{
 }
 .font24px{
     font-size: 24px;
+}
+.font22px{
+    font-size: 22px;
 }
 .font18px{
     font-size: 18px;
@@ -215,6 +229,9 @@ footer{
     flex-direction: row;
     gap: 75px;
     margin-top: 10px;
+}
+.gap33px{
+    gap: 33px;
 }
 
 @media screen and (max-width: 1024px){
@@ -259,7 +276,7 @@ footer{
         padding: 10px;
         text-align: center;
 
-        box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.05), 0px -1px 1px 0px rgba(0, 0, 0, 0.04), 0px -3px 2px 0px rgba(0, 0, 0, 0.03), 0px -5px 2px 0px rgba(0, 0, 0, 0.01), 0px -8px 2px 0px rgba(0, 0, 0, 0);
+        box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.05), 0 -1px 1px 0 rgba(0, 0, 0, 0.04), 0 -3px 2px 0 rgba(0, 0, 0, 0.03), 0 -5px 2px 0 rgba(0, 0, 0, 0.01), 0 -8px 2px 0 rgba(0, 0, 0, 0);
 
     }
     .footer-item{
