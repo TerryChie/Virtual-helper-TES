@@ -10,15 +10,64 @@
     <script src="../js/components.js"></script>
     <script src="../js/progress.js"></script>
 </head>
-<body>
+<body class="progress-page">
     <div id="header-placeholder"></div>
 
     <div class="container" id="progressContainer">
-        <div class="sidebar">11</div>
-        <div class="lab-list">22</div>
-        <div class="sidebar empty">33</div>
+        <div class="sidebar font18px">
+            <div>
+                <svg class="progress-ring" width="264" height="264">
+                    <circle class="progress-ring__bg" stroke="#9e9e9e" stroke-width="30" fill="transparent" r="117" cx="132" cy="132"/>
+                    <circle class="progress-ring__circle" stroke="#46a2d2" stroke-width="30" fill="transparent" r="117" cx="132" cy="132"/>
+                    <text class="progress-text bold" x="50%" y="-50%">0%</text>
+                </svg>
+            </div>
+            <div class="sidebar-percents font28px">12%</div>
+            <div class="sidebar-item">
+                <div class="bold">Максимальный балл:</div>
+                <div>100</div>
+            </div>
+            <div class="sidebar-item">
+                <div class="bold">Минимальный балл:</div>
+                <div>99</div>
+            </div>
+            <div class="sidebar-item">
+                <div class="bold">Средний балл:</div>
+                <div>5</div>
+            </div>
+            <div class="sidebar-item sidebar-buttons">
+                <div class="sidebar-button" id="export">
+                    <div>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.75 15V4.8125L5.5 8.0625L3.75 6.25L10 0L16.25 6.25L14.5 8.0625L11.25 4.8125V15H8.75ZM2.5 20C1.8125 20 1.22396 19.7552 0.734375 19.2656C0.244792 18.776 0 18.1875 0 17.5V13.75H2.5V17.5H17.5V13.75H20V17.5C20 18.1875 19.7552 18.776 19.2656 19.2656C18.776 19.7552 18.1875 20 17.5 20H2.5Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <div>Экспорт</div>
+                </div>
+                <input type="file" id="jsonImport" accept=".json" style="display: none">
+                    <div class="sidebar-button" id="import">
+                        <div>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.75 0V10.1875L5.5 6.9375L3.75 8.75L10 15L16.25 8.75L14.5 6.9375L11.25 10.1875V0H8.75ZM0 13.75V17.5C0 18.1875 0.244792 18.776 0.734375 19.2656C1.22396 19.7552 1.8125 20 2.5 20H17.5C18.1875 20 18.776 19.7552 19.2656 19.2656C19.7552 18.776 20 18.1875 20 17.5V13.75H17.5V17.5H2.5V13.75H0Z" fill="white"/>
+                            </svg>
+                        </div>
+                        <div>Импорт</div>
+                    </div>
+            </div>
+        </div>
+
+        <div class="lab-list">
+            <div class="lab-switch font18px">
+                <div class="lab-switch-button lab-switch-active">Пройденные</div>
+                <div class="lab-switch-button">Не пройденные</div>
+            </div>
+            <div class="lab-wrapper" id="lab-list"></div>
+        </div>
+
+        <div class="sidebar empty"></div>
     </div>
 
     <div id="footer-placeholder"></div>
+
 </body>
 </html>

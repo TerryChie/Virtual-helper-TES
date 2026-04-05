@@ -26,7 +26,6 @@
     width: 55vw;
     height: 55vw;
 
-    /* Inside auto layout */
     flex: none;
     order: 0;
     flex-grow: 0;

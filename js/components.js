@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-    loadLayout();
+    loadLayout().then(() => {
+        loadLabs(); // Загружаем лабы после того, как макет готов
+    });
 });
 
 async function loadLayout() {
@@ -11,20 +13,37 @@ async function loadLayout() {
     for (const item of layouts) {
         const target = document.getElementById(item.id);
         if (target) {
-            try {
-                const response = await fetch(item.url);
-                if (response.ok) {
-                    target.innerHTML = await response.text();
-                    initNavigation();
-                }
-            } catch (err) {
-                console.error(`Ошибка загрузки ${item.url}:`, err);
+            const response = await fetch(item.url);
+            if (response.ok) {
+                target.innerHTML = await response.text();
+                initNavigation();
             }
         }
     }
     document.body.classList.add('loaded');
 
     prime();
+}
+
+async function loadLabs() {
+    const container = document.getElementById('lab-list');
+    if (!container) return;
+
+    try {
+        const response = await fetch('/Virtual-helper-TES/js/labs.json'); // Укажите верный путь к json
+
+        const labs = await response.json();
+        const currentData = JSON.parse(localStorage.virtual_lab_progress)
+
+        container.innerHTML = labs.map(lab => `
+            <div class="lab-item">
+                        <div class="lab-title font24px">${lab.title}</div>
+                        <div class="lab-grade font18px bold">${currentData.labs[(lab.id - 1)].grade}</div>
+                    </div>
+        `).join('');
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 function initNavigation() {
@@ -38,7 +57,6 @@ function initNavigation() {
         if (currentPath.includes(linkPath)) {
             link.classList.add('active');
         }
-
         if (currentPath === '/' && (linkPath === 'index.html' || linkPath === '/')) {
             link.classList.add('active');
         }

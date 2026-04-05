@@ -2,7 +2,7 @@
 
 const STORAGE_KEY = 'virtual_lab_progress';
 const path = window.location.pathname;
-const currentLabId = path.split('/').pop().replace('.html', '');
+const currentLabIdInt = parseInt(path.split('/').pop().replace('.html', ''));
 
 initializeProgress(getProgress());
 
@@ -11,23 +11,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const labComplete = document.getElementById('labComplete');
     if (labComplete) {
-        labComplete.onclick = completeLab
+        labComplete.onclick = () => completeLab(getProgress());
     }
-    if(currentData && currentLabId in currentData) {
-        checkLabCompletion()
+    if(currentData && currentLabIdInt in currentData.labs) {
+        checkLabCompletion(getProgress())
+    }
+    const exportButton = document.getElementById('export');
+    if (exportButton) {
+        exportButton.onclick = () => exportJson(getProgress());
+    }
+    const importButton = document.getElementById('import');
+    if (importButton) {
+        importButton.onclick = () => importJson();
     }
 });
-
-function initializeProgress(currentData) {
-    if (!currentData) {
-        const initialSkeleton = {
-            user_info: { last_activity: new Date().toISOString(), overall_test_score: 0 },
-            lab1: { is_completed: false, test_score: 0, attempts: 0 },
-            lab2: { is_completed: false, test_score: 0, attempts: 0 }
-        };
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(initialSkeleton));
-    }
-}
 
 function getProgress() {
     const rawData = localStorage.getItem(STORAGE_KEY);
@@ -38,21 +35,78 @@ function saveProgress(data) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 
-function checkLabCompletion(){
-    const currentData = getProgress();
-    const labCompletion = document.getElementById('labCompletion')
-    const is_completed = currentData[currentLabId].is_completed
-
-    is_completed === false ? labCompletion.innerText = 'Не выполнена' : labCompletion.innerText = is_completed;
+function initializeProgress(currentData) {
+    if (!currentData) {
+        const initialSkeleton = {
+            user_info: { last_activity: new Date().toISOString().slice(0, 10), overall_test_score: 0 },
+            labs: [
+                { id: 1, completed: false, grade: 0},
+                { id: 2, completed: false, grade: 0 },
+                { id: 3, completed: false, grade: 0 },
+                { id: 4, completed: false, grade: 0 },
+                { id: 5, completed: false, grade: 0 },
+                { id: 6, completed: false, grade: 0 },
+                { id: 7, completed: false, grade: 0 },
+                { id: 8, completed: false, grade: 0 },
+                { id: 9, completed: false, grade: 0 },
+                { id: 10, completed: false, grade: 0 },
+                { id: 11, completed: false, grade: 0 },
+                { id: 12, completed: false, grade: 0 },
+                { id: 13, completed: false, grade: 0 },
+            ]
+        };
+        saveProgress(initialSkeleton);
+    }
 }
 
-function completeLab() {
-    const currentData = getProgress();
-    const labItem = currentData[currentLabId];
+function checkLabCompletion(currentData){
+    const labCompletion = document.getElementById('labCompletion')
+    const completionStatus = currentData.labs[currentLabIdInt-1].completed
+
+    completionStatus === false ? labCompletion.innerText = 'Не выполнена' : labCompletion.innerText = completionStatus;
+}
+
+function completeLab(currentData) {
+    const labItem = currentData.labs[currentLabIdInt-1];
     const labCompletion = document.getElementById('labCompletion')
 
-    labItem.is_completed = (labItem.is_completed === "Выполнена") ? "Не выполнена" : "Выполнена"
-    labCompletion.innerText = labItem.is_completed
+    labItem.completed = (labItem.completed === "Выполнена") ? "Не выполнена" : "Выполнена"
+    labCompletion.innerText = labItem.completed
 
     saveProgress(currentData)
+}
+
+function exportJson(currentData) {
+    const jsonString = JSON.stringify(currentData, null, 2);
+
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const link = document.createElement('a');
+
+    link.href = URL.createObjectURL(blob);
+    const date = new Date().toISOString().slice(0, 10);
+    link.download = `labs_backup_${date}.json`;
+
+    document.body.appendChild(link);
+    link.click();
+    URL.revokeObjectURL(link.href);
+    document.body.removeChild(link);
+}
+
+function importJson() {
+    const importButton = document.getElementById('jsonImport')
+    importButton.click()
+
+    importButton.onchange = function(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+
+        reader.onload = function() {
+            const importedData = JSON.parse(reader.result);
+            saveProgress(importedData);
+        };
+        reader.readAsText(file);
+        importButton.value = '';
+    };
 }

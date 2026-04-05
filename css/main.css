@@ -57,6 +57,20 @@ body.loaded {
     align-items: start;
 
     padding: 0 100px;
+    gap: 20px;
+}
+.lab-wrapper{
+    display: flex;
+    flex-direction: column;
+
+    max-height: 64vh;
+    overflow-y: scroll;
+
+    padding-bottom: 20px;
+    gap: 10px;
+}
+.lab-wrapper::-webkit-scrollbar {
+    width: 0;
 }
 
 .sidebar{
@@ -65,15 +79,105 @@ body.loaded {
     max-width: 270px;
     min-width: 270px;
 
-    border: #41A1D2 1px solid;
+    margin-top: 30px;
+    gap: 10px;
+
+    align-items: center;
 }
+.sidebar-item{
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    justify-content: space-between;
+}
+.sidebar-buttons{
+    margin-top: 20px;
+}
+.sidebar-button{
+    cursor: pointer;
+    display: flex;
+
+    padding: 10px 20px 10px 15px;
+    gap: 5px;
+
+    border-radius: 10px;
+
+    color: var(--white);
+    background-color: var(--accent);
+
+    transition: all 0.1s ease-out;
+}
+.sidebar-button:hover{
+    opacity: 70%;
+}
+.sidebar-percents{
+    padding-bottom: 10px;
+}
+
+.progress-text{
+    transform: rotate(90deg);
+
+    text-anchor: middle;
+    dominant-baseline: central;
+    fill: var(--black);
+    font-size: 48px;
+}
+
+.progress-ring {
+    transform: rotate(-90deg);
+}
+
+.progress-ring__circle {
+    stroke-dasharray: 735;
+    stroke-dashoffset: 367.5;
+}
+
 .empty{
 }
+
+.progress-page{
+    overflow-y: hidden;
+}
+
 .lab-list{
+    display: flex;
+    flex-shrink: 1;
+    flex-direction: column;
+
     width: 100%;
-    border: #41A1D2 1px solid;
     max-width: 1140px;
-    flex-shrink: 0;
+    gap: 10px;
+}
+.lab-switch{
+    display: flex;
+    flex-direction: row;
+
+    margin-top: 24px;
+}
+.lab-switch-button{
+    padding: 10px;
+}
+.lab-switch-active{
+    border-bottom: 2px solid var(--accent);
+}
+
+.lab-item{
+    display: flex;
+    flex-direction: row;
+    min-height: 59px;
+
+    justify-content: space-between;
+    padding: 10px;
+    padding-bottom: 5px;
+
+    border-bottom: 5px solid var(--accent);
+}
+.lab-title{
+    max-width: 740px;
+}
+.lab-grade{
+
 }
 
 #header-placeholder{
@@ -130,7 +234,7 @@ a.nav-button{
     font-size: 28px;
     font-weight: 500;
     text-decoration: none;
-    transition: all 50ms ease-in-out;
+    transition: all 0.1s ease-out;
 }
 a.nav-button:hover{
     color: var(--accent);
