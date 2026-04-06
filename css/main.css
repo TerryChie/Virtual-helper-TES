@@ -130,7 +130,7 @@ body.loaded {
 
 .progress-ring__circle {
     stroke-dasharray: 735;
-    stroke-dashoffset: 367.5;
+    stroke-dashoffset: 735;
 }
 
 .empty{
@@ -424,4 +424,11 @@ h2{
 }
 h3{
     font-size: 20px;
+}
+.quiz-question{
+
+}
+.quiz-answers{
+    display: flex;
+    flex-direction: row;
 }

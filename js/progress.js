@@ -24,6 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (importButton) {
         importButton.onclick = () => importJson();
     }
+
+    if(document.getElementById('progressContainer')) { updateProgressUI(getProgress()) }
 });
 
 function getProgress() {
@@ -63,15 +65,15 @@ function checkLabCompletion(currentData){
     const labCompletion = document.getElementById('labCompletion')
     const completionStatus = currentData.labs[currentLabIdInt-1].completed
 
-    completionStatus === false ? labCompletion.innerText = 'Не выполнена' : labCompletion.innerText = completionStatus;
+    completionStatus === false ? labCompletion.innerText = 'Не выполнена' : labCompletion.innerText = 'Выполнена';
 }
 
 function completeLab(currentData) {
     const labItem = currentData.labs[currentLabIdInt-1];
     const labCompletion = document.getElementById('labCompletion')
 
-    labItem.completed = (labItem.completed === "Выполнена") ? "Не выполнена" : "Выполнена"
-    labCompletion.innerText = labItem.completed
+    labItem.completed = (labItem.completed !== true)
+    labCompletion.innerText = (labItem.completed) ? "Выполнена" : "Не выполнена"
 
     saveProgress(currentData)
 }
@@ -110,3 +112,27 @@ function importJson() {
         importButton.value = '';
     };
 }
+function updateProgressUI(currentProgress) {
+
+    const completedGrades = currentProgress.labs
+        .filter(lab => lab.completed)
+        .map(lab => lab.grade);
+
+    if (completedGrades.length > 0) {
+        const maxGrade = Math.max(...completedGrades);
+        const minGrade = Math.min(...completedGrades);
+        const average = completedGrades.reduce((a, b) => a + b) / completedGrades.length;
+
+        document.getElementById('maxGrade').innerText = `${minGrade}`
+        document.getElementById('minGrade').innerText = `${maxGrade}`
+        document.getElementById('avgGrade').innerText = `${average}`
+        document.getElementById('sidebar-completed').innerText = `${completedGrades.length}/${currentProgress.labs.length}`
+        document.getElementById('svg-percentage').innerHTML = `${(completedGrades.length/currentProgress.labs.length * 100).toFixed(0)}%`
+
+        const circle = document.querySelector('.progress-ring__circle');
+        circle.style.strokeDashoffset = ((735 * completedGrades.length)/currentProgress.labs.length) * 100;
+    }
+}
+
+// function labQuiz() {
+// }

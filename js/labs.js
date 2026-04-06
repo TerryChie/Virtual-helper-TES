@@ -6,9 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function createLabCardUI() {
 
-    const pohuy = document.getElementById('labsContainer');
+    const labsContainer = document.getElementById('labsContainer');
 
-    pohuy.innerHTML += labsJson.map(lab => createLabCardStructure(lab)).join('');
+    labsContainer.innerHTML += labsJson.map(lab => createLabCardStructure(lab)).join('');
 }
 
 function createLabCardStructure(lab) {
