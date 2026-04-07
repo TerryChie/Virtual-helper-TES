@@ -6,14 +6,30 @@
     <title>Методички</title>
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/cards.css">
 
     <script src="../js/components.js"></script>
+    <script src="../js/cards.js" type="module" ></script>
 </head>
 <body>
     <div id="header-placeholder"></div>
 
-    <div class="container">
-
+    <div class="container" id="metodContainer">
+        <div class="cardsContainer">
+            <div class="font28px bold">Методические указания доступные к просмотру:</div>
+            <div id="htmlCards">
+                <a href="metod/1.html" class="metod-container">
+                    <div class="metod-title bold font24px">КРАТКОЕ ОПИСАНИЕ ЛАБОРАТОРНОГО СТЕНДА</div>
+                    <div class="metod-description font16px">Предоставляется краткое описание лабораторного стенда, содержащего
+                                                            ряд функциональных узлов, моделирующих функциональную схему систем
+                                                            связи, а также все необходимые источники сигналов и измерительные приборы</div>
+                </a>
+            </div>
+        </div>
+        <div class="cardsContainer">
+            <div class="font28px bold">Методические указания доступные к скачиванию:</div>
+            <div id="downloadableCards"></div>
+        </div>
     </div>
 
     <div id="footer-placeholder"></div>

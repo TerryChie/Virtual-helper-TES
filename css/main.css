@@ -127,8 +127,16 @@ body.loaded {
 .progress-ring {
     transform: rotate(-90deg);
 }
-
+.progress-ring__bg{
+    stroke: var(--gray);
+    stroke-width: 30;
+    fill: transparent
+}
 .progress-ring__circle {
+    stroke: var(--accent);
+    stroke-width: 30;
+    fill: transparent;
+
     stroke-dasharray: 735;
     stroke-dashoffset: 735;
 }
@@ -200,7 +208,11 @@ body.loaded {
     gap: 22px;
 
     color: var(--black);
-    box-shadow: 0 46px 13px 0 rgba(0, 0, 0, 0%), 0 29px 12px 0 rgba(0, 0, 0, 1%), 0 17px 10px 0 rgba(0, 0, 0, 3%), 0 7px 7px 0 rgba(0, 0, 0, 4%), 0 2px 4px 0 rgba(0, 0, 0, 5%);
+    box-shadow: 0 46px 13px 0 rgba(0, 0, 0, 0%),
+                0 29px 12px 0 rgba(0, 0, 0, 1%),
+                0 17px 10px 0 rgba(0, 0, 0, 3%),
+                0 7px 7px 0 rgba(0, 0, 0, 4%),
+                0 2px 4px 0 rgba(0, 0, 0, 5%);
  }
 
 .name-of-project{
@@ -244,50 +256,11 @@ a.nav-button:active{
     background-color: var(--accent);
 }
 
-.lab-container{
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-
-    flex: 1 1 400px;
-
-    max-width: 520px;
-
-    padding: 10px;
-    gap: 10px;
-
-    border-radius: 10px;
-    text-decoration: none;
-    color: var(--black);
-}
-
-.lab-container:hover{
-    box-shadow: 0 46px 13px 0 rgba(0, 0, 0, 0%), 0 29px 12px 0 rgba(0, 0, 0, 1%), 0 17px 10px 0 rgba(0, 0, 0, 3%), 0 7px 7px 0 rgba(0, 0, 0, 4%), 0 2px 4px 0 rgba(0, 0, 0, 5%);
-}
-
-.lab-preview{
-    display: flex;
-
-    aspect-ratio: 1;
-
-    text-align: center;
-    align-items: center;
-
-    background-color: var(--gray);
-    border-radius: 10px;
-}
-.lab-img{
-}
-
-.lab-title{
-}
-
-.lab-description{
-}
-
 .bold{
     font-weight: 700;
+}
+.regular{
+    font-weight: 400;
 }
 .font28px{
     font-size: 28px;
@@ -362,16 +335,6 @@ footer{
         gap: 0 !important;
         justify-content: center;
     }
-    .lab-container{
-        max-width: 300px;
-        gap: 5px;
-    }
-    .lab-title{
-        font-size: 12px;
-    }
-    .lab-description{
-        font-size: 8px;
-    }
 }
 @media screen and (max-width: 710px){
     footer{
@@ -380,7 +343,11 @@ footer{
         padding: 10px;
         text-align: center;
 
-        box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.05), 0 -1px 1px 0 rgba(0, 0, 0, 0.04), 0 -3px 2px 0 rgba(0, 0, 0, 0.03), 0 -5px 2px 0 rgba(0, 0, 0, 0.01), 0 -8px 2px 0 rgba(0, 0, 0, 0);
+        box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.05),
+                    0 -1px 1px 0 rgba(0, 0, 0, 0.04),
+                    0 -3px 2px 0 rgba(0, 0, 0, 0.03),
+                    0 -5px 2px 0 rgba(0, 0, 0, 0.01),
+                    0 -8px 2px 0 rgba(0, 0, 0, 0);
 
     }
     .footer-item{

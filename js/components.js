@@ -30,9 +30,10 @@ async function loadLabs() {
     if (!container) return;
 
     try {
-        const response = await fetch('/Virtual-helper-TES/js/labs.json'); // Укажите верный путь к json
+        const response = await fetch('/Virtual-helper-TES/js/cards.json');
 
-        const labs = await response.json();
+        const json = await response.json();
+        const labs = json[0]
         const currentData = JSON.parse(localStorage.virtual_lab_progress)
 
         container.innerHTML = labs.map(lab => `

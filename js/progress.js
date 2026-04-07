@@ -110,27 +110,40 @@ function importJson() {
         };
         reader.readAsText(file);
         importButton.value = '';
+
+        location.reload();
     };
 }
 function updateProgressUI(currentProgress) {
 
+    const allGrades = currentProgress.labs.length
     const completedGrades = currentProgress.labs
         .filter(lab => lab.completed)
         .map(lab => lab.grade);
 
     if (completedGrades.length > 0) {
+        const completedGradesNumber = completedGrades.length
+
         const maxGrade = Math.max(...completedGrades);
         const minGrade = Math.min(...completedGrades);
-        const average = completedGrades.reduce((a, b) => a + b) / completedGrades.length;
+        const average = (completedGrades.reduce((a, b) => a + b) / completedGradesNumber).toFixed(0);
+        const percentage = completedGradesNumber/allGrades
 
-        document.getElementById('maxGrade').innerText = `${minGrade}`
-        document.getElementById('minGrade').innerText = `${maxGrade}`
-        document.getElementById('avgGrade').innerText = `${average}`
-        document.getElementById('sidebar-completed').innerText = `${completedGrades.length}/${currentProgress.labs.length}`
-        document.getElementById('svg-percentage').innerHTML = `${(completedGrades.length/currentProgress.labs.length * 100).toFixed(0)}%`
+        const grades = {
+            maxGrade: maxGrade,
+            minGrade: minGrade,
+            avgGrade: average,
+            sidebarCompleted: `${completedGradesNumber}/${allGrades}`,
+            svgPercentage: `${(percentage * 100).toFixed(0)}%`
+        };
+
+        Object.entries(grades).forEach(([id, value]) => {
+            const el = document.getElementById(id);
+            if (el) el.innerHTML = `${value}`;
+        });
 
         const circle = document.querySelector('.progress-ring__circle');
-        circle.style.strokeDashoffset = ((735 * completedGrades.length)/currentProgress.labs.length) * 100;
+        circle.style.strokeDashoffset = 735 * (1 - percentage);
     }
 }
 
