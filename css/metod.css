@@ -1,0 +1,59 @@
+/* metod.css — стили страниц методичек */
+
+/* Таблица-сетка сигналов */
+.metod-signals {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.metod-signal-row {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.metod-signal-row:last-child {
+    border-bottom: none;
+}
+
+.metod-signal-name {
+    padding: 12px 16px;
+    background: #eef7fc;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    border-right: 1px solid #e0e0e0;
+}
+
+.metod-signal-desc {
+    padding: 12px 16px;
+    line-height: 1.6;
+    color: var(--black);
+    display: flex;
+    align-items: center;
+}
+
+/* Инлайн-заметка (курсив без рамки) */
+.lab-note-inline {
+    font-size: 14px;
+    color: var(--gray);
+    font-style: italic;
+}
+
+@media screen and (max-width: 710px) {
+    .metod-signal-row {
+        grid-template-columns: 1fr;
+    }
+    .metod-signal-name {
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+        padding: 8px 12px;
+    }
+    .metod-signal-desc {
+        padding: 8px 12px;
+    }
+}

@@ -1,0 +1,245 @@
+/* lab.css — стили страниц лабораторных работ */
+
+.lab-content {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 20px 0 60px;
+
+    align-items: center;
+}
+
+.lab-title {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--black);
+    text-align: center;
+}
+
+/* Секции */
+.lab-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.lab-section h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--accent);
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+}
+
+.lab-section h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 4px;
+}
+
+.lab-section p {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--black);
+}
+
+/* Списки */
+.lab-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 24px;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.lab-list li {
+    list-style: disc;
+}
+
+.lab-list--ordered li {
+    list-style: decimal;
+}
+
+/* Шаги выполнения */
+.lab-step {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    background: #fafafa;
+}
+
+.lab-step__number {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lab-step__content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+}
+
+/* Инлайн-код (комбинации КОДЕРА) */
+.lab-code {
+    font-family: 'Courier New', monospace;
+    font-size: 17px;
+    background: #eef7fc;
+    color: var(--accent);
+    padding: 2px 8px;
+    border-radius: 5px;
+    letter-spacing: 0.1em;
+}
+
+/* Слайдеры управления графиком */
+.lab-controls {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.lab-control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 220px;
+}
+
+.lab-slider {
+    width: 100%;
+    accent-color: var(--accent);
+    height: 6px;
+    cursor: pointer;
+}
+
+/* Графики Plotly */
+.lab-graph {
+    width: 100%;
+    min-height: 280px;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+/* Адаптив */
+@media screen and (max-width: 1024px) {
+    .lab-content {
+        padding: 16px 0 40px;
+        gap: 28px;
+    }
+
+    .lab-title {
+        font-size: 22px;
+    }
+
+    .lab-section h2 {
+        font-size: 18px;
+    }
+
+    .lab-section p,
+    .lab-list {
+        font-size: 16px;
+    }
+
+    .lab-step {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .lab-step__number {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+
+    .lab-controls {
+        gap: 20px;
+    }
+}
+
+/* Таблицы в лабораторных */
+.lab-table-wrap {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.lab-table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 16px;
+}
+
+.lab-table th,
+.lab-table td {
+    border: 1px solid #d0d0d0;
+    padding: 8px 14px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.lab-table thead th {
+    background-color: #eef7fc;
+    font-weight: 700;
+    color: var(--black);
+}
+
+.lab-table tbody td:first-child {
+    font-weight: 700;
+    text-align: left;
+    background-color: #fafafa;
+}
+
+/* Заметка-подсказка */
+.lab-note {
+    font-size: 15px !important;
+    color: var(--gray);
+    font-style: italic;
+    border-left: 3px solid var(--accent);
+    padding-left: 10px;
+}
+
+/* Кнопки-переключатели режима */
+.lab-toggle-group {
+    display: flex;
+    gap: 8px;
+}
+
+.lab-toggle-btn {
+    padding: 8px 20px;
+    border-radius: 8px;
+    border: 2px solid var(--accent);
+    background: transparent;
+    color: var(--accent);
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.1s ease-out;
+}
+
+.lab-toggle-btn:hover {
+    background: #eef7fc;
+}
+
+.lab-toggle-active {
+    background: var(--accent);
+    color: #fff;
+}

@@ -1,6 +1,3 @@
-// TODO: change naming and add/change some validation checks
-
-const STORAGE_KEY = 'virtual_lab_progress';
 const path = window.location.pathname;
 const currentLabIdInt = parseInt(path.split('/').pop().replace('.html', ''));
 
@@ -13,8 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (labComplete) {
         labComplete.onclick = () => completeLab(getProgress());
     }
-    if(currentData && currentLabIdInt in currentData.labs) {
-        checkLabCompletion(getProgress())
+    if (currentData && currentLabIdInt in currentData.labs) {
+        checkLabCompletion(getProgress());
     }
     const exportButton = document.getElementById('export');
     if (exportButton) {
@@ -24,8 +21,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (importButton) {
         importButton.onclick = () => importJson();
     }
+    const resetButton = document.getElementById('reset');
+    if (resetButton) {
+        resetButton.onclick = () => resetProgress();
+    }
 
-    if(document.getElementById('progressContainer')) { updateProgressUI(getProgress()) }
+    if (document.getElementById('progressContainer')) {
+        if (!currentData.user_info.first_name || !currentData.user_info.last_name) {
+            showNameModal(currentData);
+        } else {
+            updateProgressUI(currentData);
+        }
+    }
 });
 
 function getProgress() {
@@ -40,32 +47,42 @@ function saveProgress(data) {
 function initializeProgress(currentData) {
     if (!currentData) {
         const initialSkeleton = {
-            user_info: { last_activity: new Date().toISOString().slice(0, 10), overall_test_score: 0 },
+            user_info: {
+                first_name: '',
+                last_name: '',
+                last_activity: new Date().toISOString().slice(0, 10),
+                overall_test_score: 0
+            },
             labs: [
-                { id: 1, completed: false, grade: 0},
+                { id: 1, completed: false, grade: 0 },
                 { id: 2, completed: false, grade: 0 },
                 { id: 3, completed: false, grade: 0 },
                 { id: 4, completed: false, grade: 0 },
                 { id: 5, completed: false, grade: 0 },
-                { id: 6, completed: false, grade: 0 },
-                { id: 7, completed: false, grade: 0 },
-                { id: 8, completed: false, grade: 0 },
-                { id: 9, completed: false, grade: 0 },
-                { id: 10, completed: false, grade: 0 },
-                { id: 11, completed: false, grade: 0 },
-                { id: 12, completed: false, grade: 0 },
-                { id: 13, completed: false, grade: 0 },
             ]
         };
         saveProgress(initialSkeleton);
+    } else if (!currentData.user_info.first_name && currentData.user_info.first_name !== undefined) {
+
+    } else if (currentData.user_info.first_name === undefined) {
+        currentData.user_info.first_name = '';
+        currentData.user_info.last_name = '';
+        saveProgress(currentData);
     }
 }
 
 function checkLabCompletion(currentData){
-    const labCompletion = document.getElementById('labCompletion')
-    const completionStatus = currentData.labs[currentLabIdInt-1].completed
+    const lab = currentData.labs[currentLabIdInt - 1];
 
-    completionStatus === false ? labCompletion.innerText = 'Не выполнена' : labCompletion.innerText = 'Выполнена';
+    const labCompletion = document.getElementById('labCompletion');
+    if (labCompletion) {
+        labCompletion.innerText = lab.completed ? 'Выполнена' : 'Не выполнена';
+    }
+
+    const labGrade = document.getElementById('labGrade');
+    if (labGrade) {
+        labGrade.innerText = lab.completed ? lab.grade : '—';
+    }
 }
 
 function completeLab(currentData) {
@@ -114,38 +131,120 @@ function importJson() {
         location.reload();
     };
 }
-function updateProgressUI(currentProgress) {
+function showNameModal(currentData) {
+    const modal = document.getElementById('nameModal');
+    if (!modal) return;
+    modal.classList.remove('hidden');
 
-    const allGrades = currentProgress.labs.length
-    const completedGrades = currentProgress.labs
-        .filter(lab => lab.completed)
-        .map(lab => lab.grade);
+    document.getElementById('nameForm').onsubmit = function(e) {
+        e.preventDefault();
+        const firstName = document.getElementById('inputFirstName').value.trim();
+        const lastName  = document.getElementById('inputLastName').value.trim();
+        if (!firstName || !lastName) return;
 
-    if (completedGrades.length > 0) {
-        const completedGradesNumber = completedGrades.length
+        currentData.user_info.first_name = firstName;
+        currentData.user_info.last_name  = lastName;
+        saveProgress(currentData);
 
-        const maxGrade = Math.max(...completedGrades);
-        const minGrade = Math.min(...completedGrades);
-        const average = (completedGrades.reduce((a, b) => a + b) / completedGradesNumber).toFixed(0);
-        const percentage = completedGradesNumber/allGrades
-
-        const grades = {
-            maxGrade: maxGrade,
-            minGrade: minGrade,
-            avgGrade: average,
-            sidebarCompleted: `${completedGradesNumber}/${allGrades}`,
-            svgPercentage: `${(percentage * 100).toFixed(0)}%`
-        };
-
-        Object.entries(grades).forEach(([id, value]) => {
-            const el = document.getElementById(id);
-            if (el) el.innerHTML = `${value}`;
-        });
-
-        const circle = document.querySelector('.progress-ring__circle');
-        circle.style.strokeDashoffset = 735 * (1 - percentage);
-    }
+        modal.classList.add('hidden');
+        updateProgressUI(getProgress());
+    };
 }
 
-// function labQuiz() {
-// }
+function resetProgress() {
+    const confirmed = confirm('Сбросить весь прогресс? Это действие нельзя отменить.');
+    if (!confirmed) return;
+    localStorage.removeItem(STORAGE_KEY);
+    location.reload();
+}
+
+function updateProgressUI(currentProgress) {
+    const allLabs = currentProgress.labs;
+    const completedLabs = allLabs.filter(lab => lab.completed);
+    const allCount = allLabs.length;
+    const completedCount = completedLabs.length;
+    const percentage = completedCount / allCount;
+
+    const nameFirst = document.getElementById('studentFirstName');
+    const nameLast  = document.getElementById('studentLastName');
+    if (nameFirst) nameFirst.innerText = currentProgress.user_info.first_name || '';
+    if (nameLast)  nameLast.innerText  = currentProgress.user_info.last_name  || '';
+
+    if (completedCount > 0) {
+        const grades = completedLabs.map(lab => lab.grade);
+        const maxGrade = Math.max(...grades);
+        const minGrade = Math.min(...grades);
+        const avgGrade = Math.round(grades.reduce((a, b) => a + b) / completedCount);
+
+        const stats = {
+            maxGrade,
+            minGrade,
+            avgGrade,
+            sidebarCompleted: `${completedCount}/${allCount}`,
+            svgPercentage: `${Math.round(percentage * 100)}%`
+        };
+
+        Object.entries(stats).forEach(([id, value]) => {
+            const el = document.getElementById(id);
+            if (el) el.innerHTML = value;
+        });
+    }
+
+    const circle = document.querySelector('.progress-ring__circle');
+    if (circle) circle.style.strokeDashoffset = 735 * (1 - percentage);
+
+    fetch('/Virtual-helper-TES/js/cards.json')
+        .then(r => r.json())
+        .then(json => {
+            const labTitles = {};
+            json[0].forEach(lab => { labTitles[lab.id] = lab.title; });
+            renderLabList(currentProgress, true, labTitles);
+            initTabSwitch(currentProgress, labTitles);
+        })
+        .catch(() => {
+            renderLabList(currentProgress, true, {});
+            initTabSwitch(currentProgress, {});
+        });
+}
+
+function renderLabList(currentProgress, showCompleted, labTitles = {}) {
+    const container = document.getElementById('lab-list');
+    if (!container) return;
+
+    const filtered = currentProgress.labs.filter(lab => lab.completed === showCompleted);
+
+    if (filtered.length === 0) {
+        container.innerHTML = `<div class="lab-list-empty font18px">Лабораторных нет</div>`;
+        return;
+    }
+
+    container.innerHTML = filtered.map(lab => {
+        const title = labTitles[lab.id] || `Лабораторная №${lab.id}`;
+        const gradeCell = showCompleted
+            ? `<div class="lab-grade font18px bold">${lab.grade}</div>`
+            : `<div class="lab-grade font18px"></div>`;
+        return `
+        <div class="lab-item">
+            <div class="lab-title font24px">${title}</div>
+            ${gradeCell}
+        </div>`;
+    }).join('');
+}
+
+function initTabSwitch(currentProgress, labTitles) {
+    const buttons = document.querySelectorAll('.lab-switch-button');
+    if (!buttons.length) return;
+
+    // Если уже инициализировано — просто обновляем данные через dataset
+    const switcher = document.querySelector('.lab-switch');
+    if (switcher.dataset.initialized) return;
+    switcher.dataset.initialized = 'true';
+
+    buttons.forEach((btn, index) => {
+        btn.addEventListener('click', () => {
+            buttons.forEach(b => b.classList.remove('lab-switch-active'));
+            btn.classList.add('lab-switch-active');
+            renderLabList(currentProgress, index === 0, labTitles);
+        });
+    });
+}

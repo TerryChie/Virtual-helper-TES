@@ -40,12 +40,12 @@
 #downloadableCards::-webkit-scrollbar {
     width: 0;
     height: 12px;
-    background: var(--black);
+    background: var(--accent);
 
     border-radius: 10px;
 }
 #downloadableCards::-webkit-scrollbar-thumb {
-    background: var(--accent);
+    background: var(--black);
     border-radius: 10px;
 }
 .metod-container{
@@ -93,7 +93,6 @@
     text-align: center;
     align-items: center;
 
-    background-color: var(--gray);
     border-radius: 10px;
 }
 .lab-img{
@@ -145,5 +144,21 @@
     }
     .lab-description{
         font-size: 8px;
+    }
+
+    .container {
+        padding: 20px 10px !important;
+    }
+    .cardsContainer {
+        width: 100%;
+        padding-left: 0;
+    }
+    #labsContainer {
+        flex: unset;
+        width: 100%;
+        justify-content: center;
+    }
+    .metod-container {
+        min-width: 260px;
     }
 }

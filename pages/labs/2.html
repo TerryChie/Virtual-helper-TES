@@ -3,51 +3,259 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Лабораторная 2</title>
+    <title>Лабораторная 2 — Преобразование сигналов нелинейным элементом</title>
     <link rel="stylesheet" href="../../css/reset.css">
     <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/quiz.css">
+    <link rel="stylesheet" href="../../css/lab.css">
 
     <script src="../../js/plotly-3.4.0.min.js"></script>
     <script src="../../js/components.js"></script>
-
     <script src="../../js/progress.js"></script>
+
+    <script>
+        const QUIZ_QUESTIONS = [
+            {
+                question: "Каковы характерные особенности спектра тока через нелинейный элемент при моногармоническом воздействии?",
+                answers: [
+                    "Спектр содержит только входную частоту f1",
+                    "Спектр содержит постоянную составляющую и гармоники кратных частот: 0, f1, 2f1, 3f1, ...",
+                    "Спектр содержит только чётные гармоники",
+                    "Спектр не меняется по сравнению со входным сигналом"
+                ],
+                correct: 1
+            },
+            {
+                question: "Что называется порядком комбинационного колебания?",
+                answers: [
+                    "Количество частот во входном сигнале",
+                    "Степень полинома, аппроксимирующего ВАХ",
+                    "Сумма абсолютных значений целочисленных коэффициентов m и n в выражении |m·f1 ± n·f2|",
+                    "Отношение выходной частоты к входной"
+                ],
+                correct: 2
+            },
+            {
+                question: "Какова связь между наивысшим порядком комбинационного колебания и степенью аппроксимирующего полинома?",
+                answers: [
+                    "Наивысший порядок комбинационного колебания равен степени полинома",
+                    "Наивысший порядок вдвое больше степени полинома",
+                    "Они не связаны между собой",
+                    "Наивысший порядок вдвое меньше степени полинома"
+                ],
+                correct: 0
+            },
+            {
+                question: "Что называется углом отсечки?",
+                answers: [
+                    "Угол наклона ВАХ в рабочей точке",
+                    "Угол, при котором сигнал достигает максимума",
+                    "Половина угла проводимости — часть периода, в течение которой ток через нелинейный элемент отличен от нуля",
+                    "Угол сдвига фаз между входным и выходным сигналом"
+                ],
+                correct: 2
+            },
+            {
+                question: "Для чего необходимо напряжение смещения ЕСМ в данной схеме?",
+                answers: [
+                    "Для увеличения амплитуды выходного сигнала",
+                    "Для выбора рабочей точки на ВАХ транзистора — определяет, на каком участке характеристики работает схема",
+                    "Для фильтрации высокочастотных составляющих",
+                    "Для согласования импедансов"
+                ],
+                correct: 1
+            },
+            {
+                question: "Как изменится спектральный состав тока, если амплитуду входного напряжения уменьшить в 10 раз при работе на квадратичном участке ВАХ?",
+                answers: [
+                    "Спектр не изменится",
+                    "Исчезнут все гармоники выше первой",
+                    "Амплитуды всех составляющих уменьшатся: постоянная и вторая гармоника — в 100 раз, первая — в 10 раз",
+                    "Амплитуды всех составляющих уменьшатся равномерно в 10 раз"
+                ],
+                correct: 2
+            },
+            {
+                question: "Перечислите все составляющие спектра тока, если на вход элемента с квадратичной ВАХ подать сигналы с частотами 5 и 6 кГц.",
+                answers: [
+                    "0, 5, 6 кГц",
+                    "0, 5, 6, 10, 11, 12 кГц",
+                    "0, 1, 5, 6, 10, 11, 12 кГц",
+                    "5, 6, 10, 11, 12 кГц"
+                ],
+                correct: 2
+            }
+        ];
+    </script>
+    <script src="../../js/quiz.js"></script>
 </head>
 <body>
 
 <div id="header-placeholder"></div>
 
 <div class="container">
-    <div>
-        <div>
-            <div>
-                <div class="quiz-question">Вопрос</div>
-                <div class="quiz-answers">
-                    <div><input type="radio" name="firstQuestion">а</div>
-                    <div><input type="radio" name="firstQuestion">б</div>
-                    <div><input type="radio" name="firstQuestion">в</div>
-                    <div><input type="radio" name="firstQuestion">г</div>
-                </div>
-            </div>
-            <div>
-                <div class="quiz-question">Вопрос</div>
-                <div class="quiz-answers">
-                    <div><input type="radio" name="secondQuestion">а</div>
-                    <div><input type="radio" name="secondQuestion">б</div>
-                    <div><input type="radio" name="secondQuestion">в</div>
-                    <div><input type="radio" name="secondQuestion">г</div>
-                </div>
-            </div>
-            <div>
-                <div>Сдать</div>
-                <div>результаты:</div>
-            </div>
+
+    <div class="lab-status-bar">
+        <div class="lab-status-item font18px">
+            <span class="bold">Статус:</span>
+            <span id="labCompletion">—</span>
         </div>
-        <div id="labComplete">ПРОХОЖДЕНИЕ ЛАБЫ: </div>
-        <div id="labCompletion"></div>
+        <div class="lab-status-item font18px">
+            <span class="bold">Оценка:</span>
+            <span id="labGrade">—</span>
+        </div>
+        <button class="lab-status-bar__btn font18px bold" id="openQuiz">Пройти тест</button>
     </div>
+
+    <article class="lab-content">
+
+        <h1 class="lab-title">Лабораторная работа №2<br>Преобразование формы и спектра сигналов безынерционным нелинейным элементом</h1>
+
+        <section class="lab-section">
+            <h2>Цель работы</h2>
+            <p>Изучение формы и спектра сигналов на выходе резистивной цепи, содержащей нелинейный безынерционный элемент, при моно- и бигармоническом воздействии.</p>
+        </section>
+
+        <section class="lab-section">
+            <h2>Схема работы и измерительная аппаратура</h2>
+            <p>В работе используется универсальный лабораторный стенд со сменным блоком <strong>ПРЕОБРАЗОВАНИЯ СИГНАЛОВ В НЕЛИНЕЙНОЙ ЦЕПИ</strong>. Принципиальная схема содержит резистивный усилительный каскад на полевом транзисторе. Переключатель <strong>НАГРУЗКА (RVLC)</strong> установить в положение <strong>«R»</strong>.</p>
+            <p>Источниками входных сигналов служат внутренние генераторы из блока <strong>ИСТОЧНИКИ СИГНАЛОВ</strong>. Входные сигналы через сумматор (Σ) подаются на затвор транзистора (гнездо <strong>КТ 1</strong>). Коэффициент передачи сумматора по каждому входу равен −1, что исключает взаимное влияние источников.</p>
+            <p>Выход макета — гнездо <strong>КТ 2</strong> в цепи стока. Напряжение смещения <strong>Е<sub>СМ</sub></strong> устанавливается движковым потенциометром и контролируется встроенным вольтметром. Постоянная составляющая тока стока измеряется микроамперметром (кнопка <strong>«i<sub>С</sub>»</strong>).</p>
+            <p>Измерительные приборы: встроенный вольтметр переменного напряжения, двухлучевой осциллограф и ПК в режиме спектроанализатора.</p>
+        </section>
+
+        <section class="lab-section">
+            <h2>Демонстрация: ВАХ полевого транзистора</h2>
+            <p>График показывает сток-затворную характеристику i<sub>С</sub> = f(E<sub>СМ</sub>) полевого транзистора. Перемещайте ползунок, чтобы увидеть, как положение рабочей точки определяет участок характеристики и угол отсечки.</p>
+
+            <div class="lab-controls">
+                <div class="lab-control-group">
+                    <label class="font16px" for="biasSlider">
+                        Смещение E<sub>СМ</sub>: <span id="biasVal">-1.0</span> В
+                    </label>
+                    <input type="range" id="biasSlider" min="-3" max="0" step="0.1" value="-1" class="lab-slider">
+                </div>
+                <div class="lab-control-group">
+                    <label class="font16px" for="ampSlider2">
+                        Амплитуда U<sub>m</sub>: <span id="ampVal2">1.0</span> В
+                    </label>
+                    <input type="range" id="ampSlider2" min="0.2" max="2" step="0.1" value="1" class="lab-slider">
+                </div>
+            </div>
+
+            <div id="graph-vah" class="lab-graph"></div>
+            <div id="graph-output" class="lab-graph"></div>
+        </section>
+
+        <section class="lab-section">
+            <h2>Задание</h2>
+            <ol class="lab-list lab-list--ordered">
+                <li>Снять и построить вольт-амперную характеристику нелинейного элемента.</li>
+                <li>Исследовать преобразование формы и спектра моногармонического сигнала на квадратичном участке ВАХ.</li>
+                <li>Исследовать преобразование формы и спектра бигармонического сигнала на квадратичном участке ВАХ.</li>
+                <li>Выполнить исследования по пунктам 2 и 3 для кусочно-параболического участка характеристики.</li>
+            </ol>
+        </section>
+
+        <section class="lab-section">
+            <h2>Порядок выполнения эксперимента</h2>
+
+            <div class="lab-step">
+                <div class="lab-step__number">1</div>
+                <div class="lab-step__content">
+                    <h3>Снятие вольт-амперной характеристики</h3>
+                    <p>Снятие сток-затворной характеристики i<sub>С</sub> = f(E<sub>СМ</sub>) производится путём последовательной установки напряжений смещения согласно таблице 2.1, измеряя для каждого значения ток стока i<sub>С</sub> (кнопка «i<sub>С</sub>», полное отклонение стрелки — 5,0 мА). На время снятия ВАХ отключить все провода от входов сумматора.</p>
+
+                    <div class="lab-table-wrap">
+                        <table class="lab-table">
+                            <thead>
+                                <tr>
+                                    <th>E<sub>СМ</sub>, В</th>
+                                    <th>0</th><th>−0,5</th><th>−1</th><th>−1,5</th><th>…</th><th>u<sub>0</sub></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>i<sub>С</sub>, мА</td>
+                                    <td></td><td></td><td></td><td></td><td></td><td>0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>По данным таблицы построить в отчёте график i<sub>С</sub>(E<sub>СМ</sub>), обозначить на нём напряжение отсечки u<sub>0</sub>, квадратичный и кусочно-параболический участки.</p>
+                </div>
+            </div>
+
+            <div class="lab-step">
+                <div class="lab-step__number">2</div>
+                <div class="lab-step__content">
+                    <h3>Моногармоническое воздействие — квадратичный участок ВАХ</h3>
+                    <p>Рабочая точка выбирается на середине квадратичного участка: <strong>E<sub>СМ1</sub> = u<sub>0</sub> / 2</strong>. Амплитуда входного сигнала: <strong>U<sub>m1</sub> = E<sub>СМ1</sub></strong>, что соответствует действующему значению <strong>U<sub>1</sub> = U<sub>m1</sub> / √2</strong> по встроенному вольтметру.</p>
+
+                    <div class="lab-table-wrap">
+                        <table class="lab-table">
+                            <thead>
+                                <tr>
+                                    <th colspan="6">E<sub>СМ1</sub> = … В; &nbsp; f<sub>1</sub> = 1 кГц; &nbsp; U<sub>m1</sub> = … В</th>
+                                </tr>
+                                <tr>
+                                    <th>Частота</th>
+                                    <th>0</th><th>f<sub>1</sub></th><th>2f<sub>1</sub></th><th>3f<sub>1</sub></th><th>…</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Амплитуда</td>
+                                    <td></td><td></td><td></td><td></td><td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>Наблюдать и зафиксировать в отчёте осциллограммы и спектры на входе (КТ 1) и выходе (КТ 2) — друг под другом с сохранением масштаба по осям времени и частоты. Данные внести в таблицу 2.2.</p>
+                </div>
+            </div>
+
+            <div class="lab-step">
+                <div class="lab-step__number">3</div>
+                <div class="lab-step__content">
+                    <h3>Моногармоническое воздействие — кусочно-параболический участок ВАХ</h3>
+                    <p>Установить <strong>E<sub>СМ2</sub> = u<sub>0</sub></strong> и амплитуду <strong>U<sub>m2</sub> = u<sub>0</sub></strong>. Повторить наблюдения по п. 2, заполнив аналогичную таблицу 2.3.</p>
+                    <p class="lab-note">Обратите внимание: U<sub>m2</sub> — второе значение амплитуды входного сигнала, не путать со второй гармоникой.</p>
+                </div>
+            </div>
+
+            <div class="lab-step">
+                <div class="lab-step__number">4</div>
+                <div class="lab-step__content">
+                    <h3>Бигармоническое воздействие — квадратичный участок ВАХ</h3>
+                    <p>В качестве второго сигнала используется встроенный ЗГ с частотой <strong>f<sub>2</sub> = 1,2 кГц</strong>. Первый сигнал <strong>f<sub>1</sub> = 1 кГц</strong> — как прежде.</p>
+                    <ul class="lab-list">
+                        <li>Установить <strong>E<sub>СМ</sub> = u<sub>0</sub> / 2</strong> (середина квадратичного участка).</li>
+                        <li>Установить одинаковые амплитуды обоих сигналов: <strong>U<sub>1m</sub> = U<sub>2m</sub> = u<sub>0</sub> / 4</strong> — суммарный сигнал («биения») не выйдет за пределы квадратичного участка.</li>
+                        <li>Зафиксировать осциллограммы и спектры на входе и выходе, заполнить таблицу.</li>
+                        <li>Повторить, уменьшив вдвое амплитуду одного из сигналов.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="lab-step">
+                <div class="lab-step__number">5</div>
+                <div class="lab-step__content">
+                    <h3>Бигармоническое воздействие — кусочно-параболический участок ВАХ</h3>
+                    <ul class="lab-list">
+                        <li>Установить <strong>E<sub>СМ</sub> = u<sub>0</sub></strong>.</li>
+                        <li>Установить амплитуды: <strong>U<sub>1m</sub> = U<sub>2m</sub> = u<sub>0</sub> / 2</strong>.</li>
+                        <li>Повторить наблюдения п. 4, заполнить таблицу.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </article>
 </div>
 
 <div id="footer-placeholder"></div>
 
+<script src="../../js/lab2.js"></script>
 </body>
 </html>

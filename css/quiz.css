@@ -1,0 +1,186 @@
+/* quiz.css — стили модального окна теста */
+
+body.modal-open {
+    overflow: hidden;
+}
+
+.quiz-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quiz-modal.hidden {
+    display: none;
+}
+
+.quiz-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.quiz-modal__window {
+    position: relative;
+    background: #fff;
+    border-radius: 16px;
+    padding: 40px;
+    width: min(700px, 90vw);
+    max-height: 85vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.quiz-modal__window::-webkit-scrollbar {
+    width: 6px;
+}
+.quiz-modal__window::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+}
+
+.quiz-modal__close {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #8C8C8C;
+    transition: color 0.1s;
+}
+.quiz-modal__close:hover {
+    color: #000;
+}
+
+.quiz-modal__title {
+    margin: 0;
+}
+
+.quiz-modal__question {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.quiz-modal__answers {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.quiz-modal__answer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background 0.1s;
+}
+.quiz-modal__answer:hover {
+    background: #f0f8fc;
+}
+.quiz-modal__answer input[type="radio"] {
+    accent-color: #41A1D2;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.quiz-modal__submit {
+    margin-top: 8px;
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: #41A1D2;
+    color: #fff;
+    cursor: pointer;
+    transition: opacity 0.1s;
+}
+.quiz-modal__submit:hover {
+    opacity: 0.8;
+}
+
+.quiz-modal__result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 0;
+}
+
+.quiz-modal__score {
+    color: #41A1D2;
+}
+
+.quiz-modal__close-btn {
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px 30px;
+    cursor: pointer;
+    color: #8C8C8C;
+    transition: all 0.1s;
+}
+.quiz-modal__close-btn:hover {
+    border-color: #41A1D2;
+    color: #41A1D2;
+}
+
+/* Панель статуса лабораторной */
+.lab-status-bar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 14px 20px;
+    border-radius: 12px;
+    border: 2px solid #41A1D2;
+    margin-bottom: 20px;
+    width: 95%;
+    box-sizing: border-box;
+}
+
+.lab-status-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.lab-status-bar__btn {
+    margin-left: auto;
+    padding: 10px 20px;
+    background: #41A1D2;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: opacity 0.1s;
+}
+.lab-status-bar__btn:hover {
+    opacity: 0.8;
+}
+
+@media screen and (max-width: 1024px) {
+    .quiz-modal__window {
+        padding: 24px 16px;
+    }
+    .lab-status-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .lab-status-bar__btn {
+        margin-left: 0;
+        width: 100%;
+    }
+}

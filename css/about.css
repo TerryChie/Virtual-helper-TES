@@ -60,3 +60,52 @@
     text-align: center;
     width: 100%;
 }
+
+@media screen and (max-width: 1024px) {
+    .container#aboutContainer {
+        padding: 20px 10px;
+    }
+    .about-container {
+        flex-direction: column;
+    }
+    #aboutImg {
+        width: 90vw;
+        height: 60vw;
+    }
+    .about-container-column {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .point-container-column {
+        flex: 1 1 140px;
+        max-width: 200px;
+    }
+    .about-container-row {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+}
+
+@media screen and (max-width: 710px) {
+    .about-container-column {
+        flex-direction: column;
+        align-items: center;
+    }
+    .point-container-column {
+        max-width: 100%;
+        flex-direction: row;
+        align-items: center;
+        gap: 15px;
+        text-align: left;
+    }
+    .point-container-column svg {
+        flex-shrink: 0;
+        width: 48px;
+        height: auto;
+    }
+    .text-container {
+        text-align: left;
+    }
+}

@@ -163,8 +163,14 @@ body.loaded {
 
     margin-top: 24px;
 }
-.lab-switch-button{
+.lab-list-empty {
+    color: var(--gray);
+    padding: 20px 10px;
+}
+
+.lab-switch-button {
     padding: 10px;
+    cursor: pointer;
 }
 .lab-switch-active{
     border-bottom: 2px solid var(--accent);
@@ -205,7 +211,7 @@ body.loaded {
     align-items: center;
 
     padding: 20px 100px;
-    gap: 22px;
+    gap: 42px;
 
     color: var(--black);
     box-shadow: 0 46px 13px 0 rgba(0, 0, 0, 0%),
@@ -315,7 +321,7 @@ footer{
     .nav-bar{
         padding: 10px;
         border-radius: 0 0 10px 10px;
-        gap: 10px;
+        gap: 15px;
     }
     .name-of-project{
         text-align: center;
@@ -334,6 +340,46 @@ footer{
         padding: 10px !important;
         gap: 0 !important;
         justify-content: center;
+    }
+
+    /* Прогресс */
+    .container#progressContainer {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px !important;
+        gap: 16px !important;
+        overflow-y: auto;
+    }
+    .sidebar {
+        max-width: 100%;
+        min-width: unset;
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 10px;
+        gap: 16px;
+    }
+    .sidebar-item {
+        flex: 1 1 120px;
+    }
+    .sidebar-buttons {
+        width: 100%;
+        justify-content: center;
+        margin-top: 0;
+    }
+    .sidebar.empty {
+        display: none;
+    }
+    .progress-page {
+        overflow-y: auto;
+    }
+    .lab-wrapper {
+        max-height: unset;
+        overflow-y: unset;
+    }
+    .lab-list {
+        max-width: 100%;
     }
 }
 @media screen and (max-width: 710px){
@@ -368,6 +414,17 @@ footer{
     .font18px{
         font-size: 12px;
     }
+
+    /* Прогресс */
+    .progress-ring {
+        transform: scale(0.65);
+        transform-origin: top center;
+        margin-bottom: -80px;
+    }
+    .sidebar-button {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
 }
 
 .text-block{
@@ -398,4 +455,100 @@ h3{
 .quiz-answers{
     display: flex;
     flex-direction: row;
+}
+/* Имя студента в сайдбаре */
+.sidebar-name {
+    width: 100%;
+}
+
+/* Кнопка сброса */
+.sidebar-button--reset {
+    width: 100%;
+    justify-content: center;
+    background-color: transparent;
+    color: var(--gray);
+    border: 1px solid #d0d0d0;
+    font-size: 16px;
+    margin-top: 4px;
+    transition: all 0.1s ease-out;
+}
+.sidebar-button--reset:hover {
+    border-color: #e05555;
+    color: #e05555;
+    opacity: 1;
+}
+
+/* Модальное окно ввода имени */
+.name-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.name-modal.hidden {
+    display: none;
+}
+
+.name-modal__window {
+    background: #fff;
+    border-radius: 16px;
+    padding: 40px;
+    width: min(460px, 90vw);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.name-modal__title {
+    text-align: center;
+}
+
+.name-modal__subtitle {
+    text-align: center;
+    color: var(--gray);
+}
+
+.name-modal__form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.name-modal__field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.name-modal__input {
+    border: 1px solid #d0d0d0;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.1s;
+}
+
+.name-modal__input:focus {
+    border-color: var(--accent);
+}
+
+.name-modal__submit {
+    margin-top: 6px;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: var(--accent);
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: opacity 0.1s;
+}
+
+.name-modal__submit:hover {
+    opacity: 0.8;
 }

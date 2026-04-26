@@ -15,6 +15,18 @@
 
     <div class="container" id="progressContainer">
         <div class="sidebar font18px">
+
+            <!-- Имя студента -->
+            <div class="sidebar-item sidebar-name">
+                <div class="bold">Имя:</div>
+                <div id="studentFirstName"></div>
+            </div>
+            <div class="sidebar-item sidebar-name">
+                <div class="bold">Фамилия:</div>
+                <div id="studentLastName"></div>
+            </div>
+
+            <!-- Кольцо прогресса -->
             <div>
                 <svg class="progress-ring" width="264" height="264">
                     <circle class="progress-ring__bg" r="117" cx="132" cy="132"/>
@@ -22,7 +34,8 @@
                     <text class="progress-text bold" x="50%" y="-50%" id="svgPercentage">0%</text>
                 </svg>
             </div>
-            <div class="sidebar-percents font28px" id="sidebarCompleted">0/10</div>
+            <div class="sidebar-percents font28px" id="sidebarCompleted">0/5</div>
+
             <div class="sidebar-item">
                 <div class="bold">Максимальный балл:</div>
                 <div id="maxGrade">0</div>
@@ -35,6 +48,7 @@
                 <div class="bold">Средний балл:</div>
                 <div id="avgGrade">0</div>
             </div>
+
             <div class="sidebar-item sidebar-buttons">
                 <div class="sidebar-button" id="export">
                     <div>
@@ -45,15 +59,21 @@
                     <div>Экспорт</div>
                 </div>
                 <input type="file" id="jsonImport" accept=".json" style="display: none">
-                    <div class="sidebar-button" id="import">
-                        <div>
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8.75 0V10.1875L5.5 6.9375L3.75 8.75L10 15L16.25 8.75L14.5 6.9375L11.25 10.1875V0H8.75ZM0 13.75V17.5C0 18.1875 0.244792 18.776 0.734375 19.2656C1.22396 19.7552 1.8125 20 2.5 20H17.5C18.1875 20 18.776 19.7552 19.2656 19.2656C19.7552 18.776 20 18.1875 20 17.5V13.75H17.5V17.5H2.5V13.75H0Z" fill="white"/>
-                            </svg>
-                        </div>
-                        <div>Импорт</div>
+                <div class="sidebar-button" id="import">
+                    <div>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.75 0V10.1875L5.5 6.9375L3.75 8.75L10 15L16.25 8.75L14.5 6.9375L11.25 10.1875V0H8.75ZM0 13.75V17.5C0 18.1875 0.244792 18.776 0.734375 19.2656C1.22396 19.7552 1.8125 20 2.5 20H17.5C18.1875 20 18.776 19.7552 19.2656 19.2656C19.7552 18.776 20 18.1875 20 17.5V13.75H17.5V17.5H2.5V13.75H0Z" fill="white"/>
+                        </svg>
                     </div>
+                    <div>Импорт</div>
+                </div>
             </div>
+
+            <!-- Кнопка сброса -->
+            <div class="sidebar-button sidebar-button--reset" id="reset">
+                Сбросить прогресс
+            </div>
+
         </div>
 
         <div class="lab-list">
@@ -68,6 +88,25 @@
     </div>
 
     <div id="footer-placeholder"></div>
+
+    <!-- Модальное окно ввода имени -->
+    <div class="name-modal hidden" id="nameModal">
+        <div class="name-modal__window">
+            <div class="name-modal__title font24px bold">Добро пожаловать!</div>
+            <div class="name-modal__subtitle font18px">Введите своё имя и фамилию, чтобы начать работу</div>
+            <form id="nameForm" class="name-modal__form">
+                <div class="name-modal__field">
+                    <label class="bold font18px" for="inputFirstName">Имя</label>
+                    <input class="name-modal__input font18px" id="inputFirstName" type="text" placeholder="Например: Артём" required>
+                </div>
+                <div class="name-modal__field">
+                    <label class="bold font18px" for="inputLastName">Фамилия</label>
+                    <input class="name-modal__input font18px" id="inputLastName" type="text" placeholder="Например: Калайтанов" required>
+                </div>
+                <button type="submit" class="name-modal__submit font18px bold">Начать</button>
+            </form>
+        </div>
+    </div>
 
 </body>
 </html>
