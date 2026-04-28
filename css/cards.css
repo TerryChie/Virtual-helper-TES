@@ -50,7 +50,7 @@
 }
 .metod-container{
     margin-right: 10px;
-    max-height: 600px;
+    max-height: 400px;
     min-width: 520px;
 }
 .lab-container{
@@ -83,6 +83,16 @@
 
     box-shadow: 0 10px 7px 0 rgba(0, 0, 0, 2%),
                 0 8px 4px 0 rgba(0, 0, 0, 4%);
+}
+
+.lab-container--completed {
+    background: linear-gradient(145deg, #f0fdf4 0%, #ffffff 60%);
+    box-shadow: 0 46px 13px 0 rgba(0, 0, 0, 0%),
+                0 29px 12px 0 rgba(0, 0, 0, 1%),
+                0 17px 10px 0 rgba(0, 0, 0, 3%),
+                0 7px 7px 0 rgba(0, 0, 0, 4%),
+                0 2px 4px 0 rgba(0, 0, 0, 5%),
+                inset 0 0 0 1.5px rgba(74, 197, 110, 0.35);
 }
 
 .lab-preview{
